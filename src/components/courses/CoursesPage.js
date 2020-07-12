@@ -71,7 +71,7 @@ function mapDispatchToProps(dispatch) {
   return {
     // action creators must be called with dispatch
     //createCourse: (course) => dispatch(courseActions.createCourse(course)),
-    actions: bindActionCreators(courseActions, dispatch), // wraps all the actions in dispatch
+    actions: bindActionCreators(courseActions, dispatch), // wraps all the actions into dispatch, so if we had multiple actions it takes all actions
     // not only createCourse action
   };
 }
