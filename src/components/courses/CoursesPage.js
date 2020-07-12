@@ -24,7 +24,8 @@ class CoursesPage extends React.Component {
     event.preventDefault();
 
     // dispatch the create course action
-    this.props.dispatch(courseActions.createCourse(this.state.course));
+    //this.props.createCourse((this.state.course);
+    this.props.actions.createCourse(this.state.course);
     //this.props.actions.createCourse(this.state.course);
   };
 
@@ -54,7 +55,7 @@ class CoursesPage extends React.Component {
 // it will be passed in by connect (because we omit mapDispatchToProps)
 CoursesPage.propTypes = {
   courses: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
 // ownProps reference to the ownProps
@@ -66,7 +67,15 @@ function mapStateToProps(state) {
 }
 
 // let us decide which action to pass to our components
-function mapDispatchToProps() {}
+function mapDispatchToProps(dispatch) {
+  return {
+    // action creators must be called with dispatch
+    //createCourse: (course) => dispatch(courseActions.createCourse(course)),
+    actions: bindActionCreators(courseActions, dispatch), // wraps all the actions in dispatch
+    // not only createCourse action
+  };
+}
 
 // we can omit mapDispatchToProps. Than it gets a dispatchproperty
-export default connect(mapStateToProps)(CoursesPage);
+//export default connect(mapStateToProps)(CoursesPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
