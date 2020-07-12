@@ -76,6 +76,18 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+// ALTERNATIVES
+function mapStateToPropsDestructured({ courses }) {
+  return {
+    courses,
+  };
+}
+
+// binds each property to dispatch
+const mapDispatchToPropsObject = {
+  createCourse: courseActions.createCourse,
+};
+
 // we can omit mapDispatchToProps. Than it gets a dispatchproperty
 //export default connect(mapStateToProps)(CoursesPage);
 export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
