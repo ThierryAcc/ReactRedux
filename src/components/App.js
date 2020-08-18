@@ -41,16 +41,19 @@ function App() {
       </Switch>
 
       {/* <Container theme={theme} /> */}
+      {/* OLD PROVIDER */}
       <ThemeContext.Provider value={state.theme}>
         <Container />
       </ThemeContext.Provider>
 
+      {/* USECONTEXT */}
       <CityProvider>
         <CityChanger />
         <AnotherUseContextComponent />
         <Card />
       </CityProvider>
 
+      {/* CUSTOM HOOKS */}
       <ColorProvider>
         <CustomHookUser />
       </ColorProvider>
