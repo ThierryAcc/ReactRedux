@@ -1,22 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./home/HomePage";
 import AboutPage from "./about/AboutPage";
 import CoursesPage from "./courses/CoursesPage";
+import CardsPage from "./cards/CardsPage";
 import PageNotFound from "../PageNotFound";
 import Header from "./common/Header";
+import "./App.css";
+import Container from "../contextApi/Container";
+import ThemeContext from "../contextApi/ThemeContext";
+import {
+  CityProvider,
+  CityChanger,
+  AnotherUseContextComponent,
+} from "../useContext/CityProvider";
+import { Card } from "../useContext/Card";
+import { CustomHookUser } from "../customHooks/CustomHookUser";
+import { ColorProvider } from "../customHooks/ColorProvider";
 
 function App() {
+  const [state, setState] = useState({ name: "Michael", theme: "light" });
+
+  const switchTheme = () => {
+    const newTheme = state.theme === "dark" ? "light" : "dark";
+    setState({ ...state, theme: newTheme });
+  };
+
   return (
-    <div className="container-fluid">
+    <div className={"container-fluid " + state.theme}>
       {/* will always render */}
       <Header />
+      <button onClick={switchTheme}>{state.name} + Switch Theme</button>
+
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/courses" component={CoursesPage} />
+        <Route path="/cards" component={CardsPage} />
         <Route component={PageNotFound} />
       </Switch>
+
+      {/* <Container theme={theme} /> */}
+      <ThemeContext.Provider value={state.theme}>
+        <Container />
+      </ThemeContext.Provider>
+
+      <CityProvider>
+        <CityChanger />
+        <AnotherUseContextComponent />
+        <Card />
+      </CityProvider>
+
+      <ColorProvider>
+        <CustomHookUser />
+      </ColorProvider>
+
+      <Card />
+
+      <CustomHookUser />
     </div>
   );
 }
