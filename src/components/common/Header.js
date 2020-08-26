@@ -24,6 +24,10 @@ const Header = () => {
       <NavLink to="/books" activeStyle={activeStyle}>
         Books
       </NavLink>
+      {" | "}
+      <NavLink to="/creditcards" activeStyle={activeStyle}>
+        Creditcards
+      </NavLink>
     </nav>
   );
 };
