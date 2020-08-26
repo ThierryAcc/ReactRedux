@@ -17,6 +17,8 @@ import {
 import { Card } from "../useContext/Card";
 import { CustomHookUser } from "../customHooks/CustomHookUser";
 import { ColorProvider } from "../customHooks/ColorProvider";
+import { CustomHookUser2 } from "../customHooks/CustomHookUser2";
+import BooksPage from "./allInOne/BooksPage";
 
 function App() {
   const [state, setState] = useState({ name: "Michael", theme: "light" });
@@ -37,6 +39,7 @@ function App() {
         <Route path="/about" component={AboutPage} />
         <Route path="/courses" component={CoursesPage} />
         <Route path="/cards" component={CardsPage} />
+        <Route path="/books" component={BooksPage} />
         <Route component={PageNotFound} />
       </Switch>
 
@@ -56,11 +59,8 @@ function App() {
       {/* CUSTOM HOOKS */}
       <ColorProvider>
         <CustomHookUser />
+        <CustomHookUser2 />
       </ColorProvider>
-
-      <Card />
-
-      <CustomHookUser />
     </div>
   );
 }
