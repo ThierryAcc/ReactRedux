@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import createCreditcard from "./creditcardAction";
+import * as creditcardActions from "./creditcardActions";
+import { bindActionCreators } from "redux";
 
-const CreditCardPage = ({ dispatch, creditcards }) => {
+const CreditCardPage = ({ creditcards, actions }) => {
   const [creditcard, setCreditcard] = useState({ title: "" });
 
   const handleChange = (e) => {
@@ -12,7 +13,7 @@ const CreditCardPage = ({ dispatch, creditcards }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createCreditcard(creditcard));
+    actions.createCreditcard(creditcard);
   };
 
   return (
@@ -31,7 +32,7 @@ const CreditCardPage = ({ dispatch, creditcards }) => {
 
 CreditCardPage.propTypes = {
   creditcards: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -40,5 +41,11 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(creditcardActions, dispatch),
+  };
+};
+
 //  connected to the store
-export default connect(mapStateToProps)(CreditCardPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CreditCardPage);
