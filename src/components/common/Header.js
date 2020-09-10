@@ -28,6 +28,10 @@ const Header = () => {
       <NavLink to="/creditcards" activeStyle={activeStyle}>
         Creditcards
       </NavLink>
+      {" | "}
+      <NavLink to="/useRef" activeStyle={activeStyle}>
+        useRef
+      </NavLink>
     </nav>
   );
 };

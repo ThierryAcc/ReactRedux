@@ -41,7 +41,14 @@ module.exports = {
       {
         test: /\.(js|jsx)$/, // find js or jsx
         exclude: /node_modules/, // ignore node modules
-        use: ["babel-loader", "eslint-loader"], // what to do with js files, use babel and eslint
+        // use: ["babel-loader", "eslint-loader"], // what to do with js files, use babel and eslint
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/react"],
+            plugins: ["@babel/plugin-proposal-class-properties"],
+          },
+        },
       },
       {
         test: /(\.css)$/,

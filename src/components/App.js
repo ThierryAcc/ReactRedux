@@ -20,6 +20,7 @@ import { ColorProvider } from "../customHooks/ColorProvider";
 import { CustomHookUser2 } from "../customHooks/CustomHookUser2";
 import BooksPage from "./allInOne/BooksPage";
 import CreditCardPage from "./creditcard/CreditCardPage";
+import { TextInputWithFocusButton } from "../referenceHook/TextInputWithFocusButton";
 
 function App() {
   const [state, setState] = useState({ name: "Michael", theme: "light" });
@@ -42,6 +43,7 @@ function App() {
         <Route path="/cards" component={CardsPage} />
         <Route path="/books" component={BooksPage} />
         <Route path="/creditcards" component={CreditCardPage} />
+        <Route path="/useRef" component={TextInputWithFocusButton} />
         <Route component={PageNotFound} />
       </Switch>
 
