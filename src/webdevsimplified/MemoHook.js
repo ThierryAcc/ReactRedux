@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 
 export const MemoHook = () => {
   const [number, setNumber] = useState(0);
@@ -6,10 +6,17 @@ export const MemoHook = () => {
   // const doubleNumber = slowFunction(number); // without memo -> reruns the slowFunction on each render
   const doubleNumber = useMemo(() => slowFunction(number), [number]); // with memo -> caches the value, only reruns if number changes. if it is the same value don't rerender this part of the component
 
-  const themeStyles = {
-    backgroundColor: dark ? "black" : "white",
-    color: dark ? "white" : "black",
-  };
+  // without this useMemo the useEffect runs everytime because the object is not the same object (inmemory address)
+  const themeStyles = useMemo(() => {
+    return {
+      backgroundColor: dark ? "black" : "white",
+      color: dark ? "white" : "black",
+    };
+  }, [dark]);
+
+  useEffect(() => {
+    console.log("Theme changed " + themeStyles.backgroundColor);
+  }, [themeStyles]);
 
   return (
     <>

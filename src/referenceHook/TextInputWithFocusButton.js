@@ -1,6 +1,7 @@
 import React, { useRef, useState, forwardRef } from "react";
 import { ReferenceHook } from "../webdevsimplified/ReferenceHook";
 import { MemoHook } from "../webdevsimplified/MemoHook";
+import { OwnHook } from "../webdevsimplified/OwnHook";
 
 export const TextInputWithFocusButton = () => {
   const inputEl1 = useRef(null);
@@ -64,6 +65,10 @@ export const TextInputWithFocusButton = () => {
       <br />
       MEMOHOOK TO REMEMBER A NUMBER (CACHE)
       <MemoHook />
+      <br />
+      <br />
+      OWNHOOK
+      <OwnHook />
       <br />
       <br />
     </>
